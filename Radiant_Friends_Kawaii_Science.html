@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Radiant Friends: Kawaii Science</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{font-family:Mali,cursive;background:linear-gradient(135deg,#fff0f5,#e6f0fa,#f0fff4);color:#4a4a4a}
+.font-fredoka{font-family:Fredoka,cursive}
+.card{background:#fffffff2;backdrop-filter:blur(10px);border:4px solid #fecdd3;border-radius:2rem;box-shadow:0 12px 30px #f43f5e20}
+.btn{transition:.2s;box-shadow:0 5px 0 #cbd5e1;border-radius:1rem;font-weight:700}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #cbd5e1}
+.hidden{display:none!important}
+@keyframes float{50%{transform:translateY(-8px) rotate(2deg)}} .float{animation:float 3s ease-in-out infinite}
+.option{padding:.8rem;border:2px solid #bae6fd;border-radius:1rem;background:#ecfeff;font-weight:700;text-align:left}
+.option:hover{background:#cffafe}
+</style>
+</head>
+<body class="min-h-screen">
+<div class="fixed inset-0 pointer-events-none opacity-40 text-4xl">
+ <span class="absolute top-8 left-8 float">🌸</span><span class="absolute top-1/4 right-10 float">✨</span>
+ <span class="absolute bottom-10 left-12 float">🍰</span><span class="absolute bottom-16 right-16 float">🧪</span>
+</div>
+
+<header class="sticky top-0 z-20 bg-white/85 backdrop-blur border-b-4 border-rose-200 p-3">
+ <div class="max-w-6xl mx-auto flex justify-between items-center gap-3">
+  <button onclick="show('home')" class="flex items-center gap-3 text-left">
+   <span class="w-12 h-12 rounded-2xl bg-rose-100 border-2 border-rose-400 grid place-items-center text-2xl">⚛️</span>
+   <span><b class="font-fredoka text-xl text-rose-500">Radiant Friends</b><br><small>เกมเรียนรู้เรื่องกัมมันตภาพรังสี</small></span>
+  </button>
+  <div class="flex gap-2">
+   <button class="btn bg-purple-100 border-2 border-purple-400 px-3 py-2 text-sm" onclick="openInfo()">📖 คลังความรู้</button>
+   <button class="btn bg-rose-100 border-2 border-rose-400 px-3 py-2 text-sm" onclick="certificate()">🎓 ใบประกาศ</button>
+  </div>
+ </div>
+</header>
+
+<main class="max-w-6xl mx-auto p-4 relative z-10">
+<section id="home" class="card p-6 md:p-10 text-center">
+ <div class="inline-block bg-pink-100 border-2 border-pink-300 rounded-full px-4 py-2 text-rose-600 font-bold text-sm">✨ ห้องแล็บของน้องนิวตรอน ✨</div>
+ <h1 class="font-fredoka text-3xl md:text-5xl font-bold text-rose-500 mt-4">เรียนรู้ “กัมมันตภาพรังสี” ผ่านมินิเกม!</h1>
+ <p class="max-w-3xl mx-auto mt-3 text-sm">เล่นให้ครบ 4 ด่าน สะสมคะแนน และเรียนรู้เรื่องชนิดของรังสี ครึ่งชีวิต ไอโซโทป และการป้องกันรังสี</p>
+ <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+  <div class="p-5 rounded-3xl bg-rose-50 border-2 border-rose-300"><div class="text-5xl">🎯</div><h2 class="font-bold text-rose-600 mt-2">ทายใจรังสี</h2><p class="text-xs my-3">จับคู่รังสีกับสิ่งกีดขวาง</p><button class="btn bg-rose-300 border-2 border-rose-500 w-full py-2" onclick="game1()">เริ่มเกม</button></div>
+  <div class="p-5 rounded-3xl bg-cyan-50 border-2 border-cyan-300"><div class="text-5xl">🐹🍰</div><h2 class="font-bold text-cyan-700 mt-2">บ้านแฮมสเตอร์ครึ่งชีวิต</h2><p class="text-xs my-3">คำนวณการสลายตัว</p><button class="btn bg-cyan-300 border-2 border-cyan-500 w-full py-2" onclick="game2()">เริ่มเกม</button></div>
+  <div class="p-5 rounded-3xl bg-amber-50 border-2 border-amber-300"><div class="text-5xl">🃏</div><h2 class="font-bold text-amber-700 mt-2">จับคู่ไอโซโทป</h2><p class="text-xs my-3">จับคู่สารกับประโยชน์</p><button class="btn bg-amber-300 border-2 border-amber-500 w-full py-2" onclick="game3()">เริ่มเกม</button></div>
+  <div class="p-5 rounded-3xl bg-purple-50 border-2 border-purple-300"><div class="text-5xl">🛡️</div><h2 class="font-bold text-purple-700 mt-2">ชุดเกราะป้องกันรังสี</h2><p class="text-xs my-3">ปรับเวลา ระยะทาง และฉากกำบัง</p><button class="btn bg-purple-200 border-2 border-purple-500 w-full py-2" onclick="game4()">เริ่มเกม</button></div>
+ </div>
+ <div class="mt-8 pt-5 border-t-2 border-dashed border-rose-200 font-bold text-rose-500 text-xl">คะแนนรวม: <span id="total">0</span> / 1000 🌟</div>
+</section>
+
+<section id="game" class="card p-6 hidden"></section>
+</main>
+
+<div id="info" class="hidden fixed inset-0 z-50 bg-black/50 p-4 grid place-items-center">
+ <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-auto p-6">
+  <div class="flex justify-between"><h2 class="font-fredoka text-2xl text-purple-600">📖 คลังความรู้</h2><button onclick="closeInfo()">✖️</button></div>
+  <hr class="my-3">
+  <h3 class="font-bold text-rose-500">รังสี 3 ชนิด</h3>
+  <p class="text-sm mt-2">α มีอำนาจทะลุทะลวงต่ำ กระดาษกั้นได้ • β ทะลุทะลวงปานกลาง • γ ทะลุทะลวงสูง ต้องใช้วัสดุหนาแน่น เช่น ตะกั่วหรือคอนกรีต</p>
+  <h3 class="font-bold text-cyan-600 mt-5">ครึ่งชีวิต</h3>
+  <p class="text-sm mt-2">คือเวลาที่สารกัมมันตรังสีเหลือ 50% ของปริมาณเดิม สูตร N = N₀(1/2)ⁿ</p>
+  <h3 class="font-bold text-amber-600 mt-5">ตัวอย่างการใช้ไอโซโทป</h3>
+  <p class="text-sm mt-2">Co-60 ใช้ทางการแพทย์และอุตสาหกรรม • I-131 ใช้เกี่ยวกับต่อมไทรอยด์ • C-14 ใช้หาอายุวัตถุโบราณ</p>
+  <h3 class="font-bold text-purple-600 mt-5">หลักป้องกัน</h3>
+  <p class="text-sm mt-2">ลดเวลา เพิ่มระยะทาง และใช้ฉากกำบังที่เหมาะสม</p>
+ </div>
+</div>
+
+<script>
+let score=[0,0,0,0], current=[];
+const $=id=>document.getElementById(id);
+function update(){ $('total').textContent=score.reduce((a,b)=>a+b,0); }
+function showHome(){ $('game').classList.add('hidden'); $('home').classList.remove('hidden'); update(); }
+function gameShell(title,content){$('home').classList.add('hidden');$('game').classList.remove('hidden');$('game').innerHTML=`<div class="flex justify-between items-center border-b-2 border-rose-200 pb-3"><h2 class="font-fredoka text-xl text-rose-600">${title}</h2><button class="btn bg-gray-100 px-3 py-1" onclick="showHome()">✖️ ออก</button></div>${content}`}
+
+function game1(){
+ score[0]=0; let i=0;
+ const qs=[
+  ['📄','กระดาษบาง','รังสีใดถูกกระดาษกั้นได้?','alpha','แอลฟาทะลุทะลวงต่ำ'],
+  ['🪙','อะลูมิเนียม','รังสีใดถูกแผ่นอะลูมิเนียมกั้นได้?','beta','เบตามีอำนาจทะลุทะลวงปานกลาง'],
+  ['🧱','ตะกั่วหนา','รังสีใดมีอำนาจทะลุทะลวงสูงมาก?','gamma','แกมมาเป็นคลื่นแม่เหล็กไฟฟ้า ไม่มีประจุ'],
+  ['⚡','สนามไฟฟ้า','รังสีใดมีประจุลบ?','beta','เบตามักหมายถึงอิเล็กตรอนพลังงานสูง'],
+  ['✨','สนามไฟฟ้า','รังสีใดไม่มีประจุไฟฟ้า?','gamma','แกมมาไม่มีประจุ']
+ ];
+ function render(){
+  let q=qs[i];
+  gameShell('🎯 เกมที่ 1: ทายใจรังสี!',`<div class="mt-5 bg-rose-50 rounded-3xl p-5 text-center">
+   <div class="text-sm font-bold">ข้อ ${i+1} / ${qs.length} • คะแนน ${score[0]}</div><div class="text-6xl my-4">${q[0]}</div>
+   <h3 class="font-bold">${q[1]}</h3><p class="text-sm text-rose-600 font-bold mt-2">${q[2]}</p>
+   <div class="grid md:grid-cols-3 gap-3 mt-5">
+    <button class="option" onclick="answer('alpha')">🟢 แอลฟา α</button><button class="option" onclick="answer('beta')">🔵 เบตา β</button><button class="option" onclick="answer('gamma')">🟣 แกมมา γ</button>
+   </div><div id="feedback" class="mt-4 font-bold"></div></div>`);
+ }
+ window.answer=(x)=>{
+  let q=qs[i], f=$('feedback');
+  if(x===q[3]){score[0]+=50;f.textContent='✅ ถูกต้อง! '+q[4];f.className='mt-4 font-bold text-emerald-600'}else{f.textContent='❌ ยังไม่ถูก ลองทบทวนอีกครั้ง';f.className='mt-4 font-bold text-rose-600'}
+  setTimeout(()=>{i++; if(i<qs.length)render(); else {alert('🎉 ผ่านด่านที่ 1! ได้ '+score[0]+' คะแนน');showHome()}},900)
+ };
+ render();
+}
+
+function game2(){
+ score[1]=0; let i=0;
+ const qs=[
+ ['80 กรัม ครึ่งชีวิต 5 วัน ผ่าน 15 วัน เหลือเท่าไร?',['40','20','10','5'],2,'15/5 = 3 ครึ่งชีวิต: 80 → 40 → 20 → 10'],
+ ['จาก 100% เหลือ 12.5% ต้องผ่านกี่ครึ่งชีวิต?',['2','3','4','5'],1,'100 → 50 → 25 → 12.5 จึงเป็น 3 รอบ'],
+ ['100 กรัมเหลือ 25 กรัมใน 10 วัน ครึ่งชีวิตเท่าไร?',['2.5 วัน','5 วัน','10 วัน','20 วัน'],1,'100 → 50 → 25 คือ 2 ครึ่งชีวิต ดังนั้น 10/2 = 5 วัน']
+ ];
+ function render(){
+  let q=qs[i];gameShell('🐹🍰 เกมที่ 2: บ้านแฮมสเตอร์ครึ่งชีวิต',`<div class="mt-5 bg-cyan-50 rounded-3xl p-5">
+   <div class="font-bold text-cyan-700">ข้อ ${i+1}/3 • คะแนน ${score[1]}</div><div class="text-6xl text-center my-3">🍰</div><p class="font-bold text-sm">${q[0]}</p>
+   <div class="grid md:grid-cols-2 gap-3 mt-4">${q[1].map((x,j)=>`<button class="option" onclick="a2(${j})">${j+1}. ${x}</button>`).join('')}</div>
+   <div id="exp" class="mt-4"></div></div>`);
+ }
+ window.a2=(x)=>{let q=qs[i];$('exp').innerHTML=x===q[2]?`<span class="text-emerald-600 font-bold">✅ ถูกต้อง! 💡 ${q[3]}</span>`:`<span class="text-rose-600 font-bold">❌ ลองดูวิธีคิด: ${q[3]}</span>`;if(x===q[2])score[1]+=80;setTimeout(()=>{i++;if(i<qs.length)render();else{alert('🎉 ผ่านด่านที่ 2! ได้ '+score[1]+' คะแนน');showHome()}},1000)}
+ render();
+}
+
+function game3(){
+ score[2]=0;let selected=null,matched=0;
+ const data=[
+ ['Co-60','🩺 ใช้ในการฉายรังสีทางการแพทย์และงานอุตสาหกรรม'],
+ ['I-131','🦋 ใช้ตรวจและรักษาความผิดปกติของต่อมไทรอยด์'],
+ ['C-14','🏺 ใช้หาอายุวัตถุโบราณและฟอสซิล'],
+ ['P-32','🌱 ใช้ศึกษาการดูดซึมฟอสฟอรัสของพืช']
+ ];
+ let uses=[...data].sort(()=>Math.random()-.5);
+ function render(){
+  gameShell('🃏 เกมที่ 3: จับคู่ไอโซโทปมหาสนุก',`<div class="mt-5 bg-amber-50 rounded-3xl p-5">
+   <div class="flex justify-between font-bold text-sm"><span>จับคู่ให้ครบ 4 คู่</span><span>คะแนน ${score[2]}</span></div>
+   <div class="grid md:grid-cols-2 gap-4 mt-4"><div id="iso"></div><div id="use"></div></div>
+   <p id="m3" class="mt-4 text-center font-bold"></p></div>`);
+  $('iso').innerHTML=data.map(x=>`<button id="i-${x[0]}" class="option w-full mb-2" onclick="sel3('${x[0]}')">⚛️ ${x[0]}</button>`).join('');
+  $('use').innerHTML=uses.map(x=>`<button id="u-${x[0]}" class="option w-full mb-2" onclick="match3('${x[0]}')">${x[1]}</button>`).join('');
+ }
+ window.sel3=id=>{selected=id;$('m3').textContent='เลือก '+id+' แล้ว กรุณาเลือกประโยชน์ด้านขวา'};
+ window.match3=id=>{if(!selected){$('m3').textContent='⚠️ เลือกไอโซโทปด้านซ้ายก่อน';return}if(selected===id){score[2]+=60;matched++;$('i-'+id).disabled=true;$('u-'+id).disabled=true;$('i-'+id).style.opacity=.35;$('u-'+id).style.opacity=.35;$('m3').textContent='✅ จับคู่ถูกต้อง!';selected=null;if(matched===4)setTimeout(()=>{alert('🎉 จับคู่ครบ! ได้ '+score[2]+' คะแนน');showHome()},700)}else $('m3').textContent='❌ ยังไม่ใช่คู่นี้ ลองใหม่';};
+ render();
+}
+
+function game4(){
+ score[3]=0;
+ gameShell('🛡️ เกมที่ 4: ชุดเกราะป้องกันรังสี',`<div class="mt-5 bg-purple-50 rounded-3xl p-5">
+ <p class="text-sm font-bold text-purple-700 mb-4">ปรับให้ปริมาณรังสี ≤ 10 หน่วย โดยลดเวลา เพิ่มระยะทาง และเลือกฉากกำบัง</p>
+ <div class="grid md:grid-cols-3 gap-4">
+  <label class="bg-white p-4 rounded-2xl">⏱️ เวลา <input id="t" type="range" min="5" max="60" value="30" class="w-full" oninput="dose()"><b><span id="tv">30</span> นาที</b></label>
+  <label class="bg-white p-4 rounded-2xl">📏 ระยะทาง <input id="d" type="range" min="1" max="10" value="2" class="w-full" oninput="dose()"><b><span id="dv">2</span> เมตร</b></label>
+  <label class="bg-white p-4 rounded-2xl">🛡️ ฉากกำบัง<select id="s" class="w-full mt-2 p-2 rounded-xl border" onchange="dose()"><option value="1">ไม่มี</option><option value=".8">ชุดแล็บ</option><option value=".2">ตะกั่ว</option><option value=".05">คอนกรีต</option></select></label>
+ </div>
+ <div class="bg-white rounded-2xl p-6 mt-5 text-center"><div id="dosev" class="text-4xl font-bold text-rose-500">75.0</div><p id="ds" class="font-bold text-rose-500">⚠️ ยังสูงเกินไป</p><button class="btn bg-purple-200 border-2 border-purple-500 px-6 py-3 mt-4" onclick="submit4()">ยืนยันแผน 🛡️</button></div>
+ </div>`);
+ dose();
+}
+function dose(){let t=+$('t').value,d=+$('d').value,s=+$('s').value,v=10*t/(d*d)*s;$('tv').textContent=t;$('dv').textContent=d;$('dosev').textContent=v.toFixed(1);$('dosev').className=v<=10?'text-4xl font-bold text-emerald-500':'text-4xl font-bold text-rose-500';$('ds').textContent=v<=10?'💖 ปลอดภัย! พร้อมผ่านด่าน':'⚠️ ยังสูงเกินไป ลองปรับใหม่'}
+function submit4(){let v=parseFloat($('dosev').textContent);if(v<=10){score[3]=250;alert('🎉 ผ่านด่านที่ 4! ได้ 250 คะแนน');showHome()}else alert('⚠️ ลดเวลา เพิ่มระยะทาง หรือเพิ่มฉากกำบังอีกนิดนะ')}
+function openInfo(){$('info').classList.remove('hidden')}function closeInfo(){$('info').classList.add('hidden')}
+function certificate(){let t=score.reduce((a,b)=>a+b,0);alert('🎓 คะแนนรวมของคุณ: '+t+' / 1000 คะแนน\\nเล่นครบทุกด่านแล้วสามารถนำผลคะแนนนี้ส่งครูได้')}
+update();
+</script>
+</body>
+</html>
